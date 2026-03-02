@@ -41,9 +41,15 @@
     }
 
     header {
-      background-color: #160140;
+      background: linear-gradient(180deg, 
+        rgba(11, 1, 55, 0.7) 0%, 
+        rgba(11, 1, 55, 0.4) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
       padding: 1.5rem 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -61,12 +67,16 @@
     .header-logo {
       height: 50px;
       width: auto;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
     }
 
     .header-title {
       font-size: 1.5rem;
       font-weight: 200;
-      color: #fff;
+      background: linear-gradient(135deg, #fff 0%, rgba(200, 180, 255, 0.95) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       letter-spacing: 0.5px;
     }
 
