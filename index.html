@@ -3,88 +3,691 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bump Inc. Privacy Policies</title>
+  <title>Bump Inc. - Indie Game Studio</title>
+  <link rel="icon" type="image/png" href="header_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0a0015 0%, #1a0a2e 50%, #160140 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding-bottom: 3rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #stars-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 10;
+    }
+
+    header {
+      background-color: #160140;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 200;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .intro h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(167, 139, 250, 0.3);
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.3px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .game-card {
+      background: rgba(22, 1, 64, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 1.75rem;
+      backdrop-filter: blur(1.5px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, #b01828 0%, #47070d 100%);
-      color: #fff;
-      font-family: "Segoe UI", Roboto, sans-serif;
-      text-align: center;
+      gap: 1.25rem;
+      position: relative;
       overflow: hidden;
-      padding: 1rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1.2rem;
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        rgba(255, 255, 255, 0.15) 50%, 
+        rgba(255, 255, 255, 0.05) 100%);
+      border-radius: 24px 24px 0 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
-    .btn-container {
+    .game-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 
+                  0 0 40px rgba(255, 255, 255, 0.03),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(22, 1, 64, 0.15);
+      backdrop-filter: blur(4px);
+    }
+
+    .game-card:hover::before {
+      opacity: 1;
+    }
+
+    .game-header {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .game-icon {
+      width: 90px;
+      height: 90px;
+      min-width: 90px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .game-card:hover .game-icon {
+      transform: scale(1.05);
+    }
+
+    .game-icon.white-bg {
+      background-color: #fff;
+      padding: 6px;
+    }
+
+    .game-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+      flex: 1;
+    }
+
+    .game-description {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1px;
+      background: transparent;
+      border: 2.0px solid;
+    }
+
+    .badge-released {
+      border-color: #39ff14;
+      color: #39ff14;
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.3), inset 0 0 12px rgba(57, 255, 20, 0.05);
+    }
+
+    .badge-alpha {
+      border-color: #ffea00;
+      color: #ffea00;
+      text-shadow: 0 0 8px rgba(255, 234, 0, 0.6);
+      box-shadow: 0 0 12px rgba(255, 234, 0, 0.3), inset 0 0 12px rgba(255, 234, 0, 0.05);
+    }
+
+    .badge-development {
+      border-color: #00d4ff;
+      color: #00d4ff;
+      text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.3), inset 0 0 12px rgba(0, 212, 255, 0.05);
+    }
+
+    .badge-upcoming {
+      border-color: #ff00cc;
+      color: #ff00cc;
+      text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+      box-shadow: 0 0 12px rgba(255, 0, 255, 0.3), inset 0 0 12px rgba(255, 0, 255, 0.05);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+      }
+    }
+
+    .game-content {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      width: 100%;
-      max-width: 320px;
+      flex-grow: 1;
     }
 
-    .pp-btn {
+    .game-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    .store-link {
+      display: inline-block;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .store-link:hover {
+      transform: scale(1.08) translateY(-2px);
+      filter: brightness(1.15) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
+    }
+
+    .store-button {
+      height: 54px;
+      width: auto;
       display: block;
-      padding: 1rem 1.5rem;
-      font-size: 1.2rem;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.35);
-      border-radius: 12px;
-      color: #fff;
-      text-decoration: none;
-      backdrop-filter: blur(6px);
-      transition: all 0.25s ease;
     }
 
-    .pp-btn:hover {
-      background: rgba(255, 255, 255, 0.25);
-      border-color: white;
-      transform: scale(1.03);
+    .privacy-link {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .privacy-link:hover {
+      color: rgba(167, 139, 250, 0.9);
+    }
+
+    .tester-note {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ffea00;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 3px solid #ffea00;
+      border-radius: 6px;
+    }
+
+    .coming-soon {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      text-align: center;
+      letter-spacing: 0.3px;
     }
 
     footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    footer a:hover {
+      color: rgba(167, 139, 250, 0.9);
+    }
+
+    footer a::after {
+      content: '';
       position: absolute;
-      bottom: 1rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: rgba(167, 139, 250, 0.9);
+      transition: width 0.3s ease;
+    }
+
+    footer a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 1.5rem;
+      }
+
+      .header-logo {
+        height: 40px;
+      }
+
+      .intro h1 {
+        font-size: 2rem;
+      }
+
+      .intro p {
+        font-size: 1rem;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      main {
+        padding: 3rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Select a Privacy Policy</h1>
+  <header>
+    <div class="header-content">
+      <img src="header_logo.png" alt="Bump Inc. Logo" class="header-logo">
+      <h1 class="header-title">bump.inc</h1>
+    </div>
+  </header>
 
-  <div class="btn-container">
-    <a class="pp-btn" href="https://sites.google.com/view/bumpinc-steam-skipper-pp">
-      Steam Skipper
-    </a>
+  <main>
+    <section class="intro">
+      <p>Small studio.</p>
+      <h1>Unreasonable ambition.</h1>
+    </section>
+
+    <div class="games-grid">
+      
+      <!-- Tic-Tac Chess -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="chess-logo.png" alt="Tic-Tac Chess" class="game-icon">
+          <h2 class="game-title">Tic-Tac Chess: Puzzle Duel</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">A strategic puzzle combining Tic Tac Toe and chess. Challenge your mind!</p>
+          <div class="badges">
+            <span class="badge badge-alpha">Alpha Test</span>
+          </div>
+        </div>
+        <p class="tester-note">⚠️ Currently available for testers only</p>
+        <div class="game-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.bumpinc.chess_toe" class="store-link" target="_blank" rel="noopener">
+            <img src="get_on_google_play_button.png" alt="Get it on Google Play" class="store-button">
+          </a>
+          <a href="https://sites.google.com/view/bump-inc-tic-tac-chess" class="privacy-link" target="_blank" rel="noopener">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- Steam Skipper -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="steam_skipper_logo.png" alt="Steam Skipper" class="game-icon">
+          <h2 class="game-title">Steam Skipper</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">Black & white arcade flight. Pure skill. Endless high scores.</p>
+          <div class="badges">
+            <span class="badge badge-alpha">Alpha Test</span>
+          </div>
+        </div>
+        <p class="tester-note">⚠️ Currently available for testers only</p>
+        <div class="game-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.bumpinc.steam_skipper" class="store-link" target="_blank" rel="noopener">
+            <img src="get_on_google_play_button.png" alt="Get it on Google Play" class="store-button">
+          </a>
+          <a href="https://sites.google.com/view/bumpinc-steam-skipper-pp" class="privacy-link" target="_blank" rel="noopener">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- Lucky Dart -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="lucky_dart_logo.png" alt="Lucky Dart" class="game-icon">
+          <h2 class="game-title">Lucky Dart: Spin & Collect</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">Spin wheels, collect combos, and follow your luck in a relaxing game!</p>
+          <div class="badges">
+            <span class="badge badge-released">Released</span>
+          </div>
+        </div>
+        <div class="game-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.bumpinc.lucky_dart" class="store-link" target="_blank" rel="noopener">
+            <img src="get_on_google_play_button.png" alt="Get it on Google Play" class="store-button">
+          </a>
+          <a href="https://sites.google.com/view/lucky-dart-privacy-policy" class="privacy-link" target="_blank" rel="noopener">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- Santa's Workshop -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="santa_workshop_logo.png" alt="Santa's Workshop" class="game-icon white-bg">
+          <h2 class="game-title">Santa's Workshop: Tile Match</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">Match toys, decorate your Christmas tree and send gifts to friends!</p>
+          <div class="badges">
+            <span class="badge badge-alpha">Alpha Test</span>
+            <span class="badge badge-upcoming">This New Year</span>
+          </div>
+        </div>
+        <p class="tester-note">⚠️ Currently available for testers only</p>
+        <div class="game-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.bumpinc.bump_crush" class="store-link" target="_blank" rel="noopener">
+            <img src="get_on_google_play_button.png" alt="Get it on Google Play" class="store-button">
+          </a>
+          <a href="https://sites.google.com/view/santas-workshop-pp" class="privacy-link" target="_blank" rel="noopener">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- SpaceFood Express -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="spacefood_express_logo.png" alt="SpaceFood Express" class="game-icon">
+          <h2 class="game-title">SpaceFood Express</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">Navigate through space & manage temperature to deliver orders hot and ready!</p>
+          <div class="badges">
+            <span class="badge badge-development">In Development</span>
+          </div>
+        </div>
+        <div class="game-actions">
+          <div class="coming-soon">Coming Soon on Google Play</div>
+        </div>
+      </div>
+
+      <!-- Route 5972 -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="route_5972_logo.png" alt="Route 5972" class="game-icon">
+          <h2 class="game-title">Route 5972</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">Race wreckage near Voiden City. Dodge drones, make choices, shape your fate.</p>
+          <div class="badges">
+            <span class="badge badge-development">In Development</span>
+          </div>
+        </div>
+        <div class="game-actions">
+          <div class="coming-soon">Coming Soon on Google Play</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Bump Inc. (Kelidon) • All Rights Reserved</p>
+    <p style="margin-top: 0.5rem;"><a href="mailto:bump.inc.apps@gmail.com">bump.inc.apps@gmail.com</a></p>
+  </footer>
+
+  <canvas id="stars-canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
     
-    <a class="pp-btn" href="https://sites.google.com/view/bump-inc-tic-tac-chess">
-      Tic Tac Chess
-    </a>
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
     
-    <a class="pp-btn" href="https://sites.google.com/view/santas-workshop-pp">
-      Santa’s Workshop
-    </a>
-
-    <a class="pp-btn" href="https://sites.google.com/view/lucky-dart-privacy-policy">
-      Lucky Dart
-    </a>
-
-  </div>
-
-  <footer>© 2025 Bump Inc. (Kelidon)</footer>
+    const stars = [];
+    const maxStars = 250;
+    const mouse = { x: width / 2, y: height / 2 };
+    let time = 0;
+    
+    const isTouchDevice = 'ontouchstart' in window || window.matchMedia('(pointer: coarse)').matches;
+    const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    let orientationEnabled = false;
+    
+    function centerMouse() {
+      mouse.x = width / 2;
+      mouse.y = height / 2;
+    }
+    
+    class Star {
+      constructor(isInitial = false) {
+        this.reset(isInitial);
+      }
+      
+      reset(isInitial = false) {
+        if (isInitial) {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+        } else {
+          const spread = 150;
+          this.x = mouse.x + (Math.random() - 0.5) * spread;
+          this.y = mouse.y + (Math.random() - 0.5) * spread;
+        }
+        this.z = Math.random() * 2;
+        this.size = (3 - this.z) * 0.8;
+        this.speed = (3 - this.z) * 0.3;
+        this.pastX = this.x;
+        this.pastY = this.y;
+        this.hueOffset = Math.random() * 100;
+      }
+      
+      update() {
+        this.pastX = this.x;
+        this.pastY = this.y;
+        
+        const dx = (this.x - mouse.x) * 0.01;
+        const dy = (this.y - mouse.y) * 0.01;
+        
+        this.x += dx * this.speed;
+        this.y += dy * this.speed;
+        
+        if (this.y > height + 50 || this.y < -50 || this.x < -50 || this.x > width + 50) {
+          this.reset(false);
+        }
+      }
+      
+      draw() {
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+        
+        const hue = 250 + Math.sin(time * 0.001 + this.hueOffset) * 30;
+        const alpha = 0.4 + this.z * 0.3;
+        
+        gradient.addColorStop(0, `hsla(${hue}, 70%, 70%, ${alpha})`);
+        gradient.addColorStop(0.5, `hsla(${hue}, 60%, 60%, ${alpha * 0.5})`);
+        gradient.addColorStop(1, `hsla(${hue}, 50%, 50%, 0)`);
+        
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.strokeStyle = `hsla(${hue}, 60%, 70%, ${alpha * 0.3})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(this.pastX, this.pastY);
+        ctx.lineTo(this.x, this.y);
+        ctx.stroke();
+      }
+    }
+    
+    for (let i = 0; i < maxStars; i++) {
+      stars.push(new Star(true));
+    }
+    
+    function animate() {
+      time++;
+      
+      ctx.fillStyle = 'rgba(10, 0, 21, 0.15)';
+      ctx.fillRect(0, 0, width, height);
+      
+      stars.forEach(star => {
+        star.update();
+        star.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    if (isTouchDevice && isMobile) {
+      centerMouse();
+      
+      function handleOrientation(e) {
+        const gamma = e.gamma;
+        const beta = e.beta;
+        if (gamma == null || beta == null) return;
+        const factor = 12;
+        mouse.x = Math.max(0, Math.min(width, width / 2 + gamma * factor));
+        mouse.y = Math.max(0, Math.min(height, height / 2 + beta * (factor * 0.6)));
+      }
+      
+      if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        const enableOrientation = async () => {
+          try {
+            const perm = await DeviceOrientationEvent.requestPermission();
+            if (perm === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+              orientationEnabled = true;
+            }
+          } catch (err) {}
+        };
+        document.addEventListener('click', function requestOnTap() {
+          enableOrientation();
+          document.removeEventListener('click', requestOnTap);
+        }, { once: true });
+      } else if (typeof DeviceOrientationEvent !== 'undefined') {
+        window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+        orientationEnabled = true;
+      }
+      
+      window.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+      
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+    } else {
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+    }
+    
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      if (isTouchDevice && isMobile && !orientationEnabled) centerMouse();
+    });
+    
+    animate();
+  </script>
 
 </body>
 </html>
