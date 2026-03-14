@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="google-site-verification" content="QKGkfxuFCikJW6TFtdidJ3X1lmMvDn4vQ8W_AwCjefc" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bump Inc. - Indie Game Studio</title>
+  <meta name="description" content="Bump Inc. is an indie game studio. We make mobile and PC games: Tic-Tac Chess, Steam Skipper, Lucky Dart, Santa's Workshop, SpaceFood Express, Route 5972. Small studio, reasonable ambition.">
+  <meta name="keywords" content="Bump Inc, indie game studio, mobile games, Tic-Tac Chess, Steam Skipper, Lucky Dart, Santa's Workshop, SpaceFood Express, Route 5972, Kelidon">
+  <link rel="canonical" href="https://bump-inc.github.io/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bump-inc.github.io/">
+  <meta property="og:title" content="Bump Inc. - Indie Game Studio">
+  <meta property="og:description" content="Small studio, reasonable ambition. Mobile & PC games: Tic-Tac Chess, Steam Skipper, Lucky Dart, Santa's Workshop, and more.">
+  <meta property="og:image" content="https://bump-inc.github.io/header_logo.webp">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bump Inc. - Indie Game Studio">
+  <meta name="twitter:description" content="Small studio, reasonable ambition. Mobile & PC games from Bump Inc.">
+  <meta name="twitter:image" content="https://bump-inc.github.io/header_logo.webp">
+
   <link rel="icon" type="image/png" href="header_logo.webp">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('Montserrat-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -80,6 +104,28 @@
       letter-spacing: 0.5px;
     }
 
+    .pitch-deck-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.3) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+    }
+    .pitch-deck-btn:hover {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(139, 92, 246, 0.4) 100%);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+    }
+
     main {
       max-width: 1400px;
       margin: 0 auto;
@@ -107,6 +153,13 @@
       font-weight: 500;
       color: rgba(255, 255, 255, 0.7);
       letter-spacing: 0.3px;
+    }
+
+    .intro-tagline {
+      font-size: 0.95rem !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      max-width: 540px;
+      margin: 1rem auto 0 !important;
     }
 
     .games-grid {
@@ -396,13 +449,53 @@
       }
     }
   </style>
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bump-inc.github.io/#organization",
+        "name": "Bump Inc.",
+        "alternateName": "Kelidon",
+        "url": "https://bump-inc.github.io/",
+        "logo": "https://bump-inc.github.io/header_logo.webp",
+        "description": "Indie game studio. We make mobile and PC games: Tic-Tac Chess, Steam Skipper, Lucky Dart, Santa's Workshop, SpaceFood Express, Route 5972.",
+        "email": "bump.inc.apps@gmail.com",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "name": "Bump Inc.",
+        "url": "https://bump-inc.github.io/",
+        "description": "Official site of Bump Inc. indie game studio. Discover our games for Android and PC.",
+        "publisher": { "@id": "https://bump-inc.github.io/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <header>
     <div class="header-content">
-      <img src="header_logo.webp" alt="Bump Inc. Logo" class="header-logo">
-      <h1 class="header-title">bump.inc</h1>
+
+        <img src="header_logo.webp" alt="Bump Inc. Logo" class="header-logo">
+        <h1 class="header-title">bump.inc</h1>
+
+  
+      <a class="pitch-deck-btn"
+         href="https://gamma.app/docs/Bump-Inc-vrmup2qq3iuw3nn?mode=present#card-dmodmrjhwmai7ms"
+         target="_blank">
+  
+        <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+  
+        Pitch Deck
+      </a>
     </div>
   </header>
 
@@ -410,6 +503,7 @@
     <section class="intro">
       <p>Small studio.</p>
       <h1>Reasonable ambition.</h1>
+      <p class="intro-tagline">Bump Inc. is an indie game studio. We make mobile and PC games: puzzle games, arcade, casual, and narrative adventures.</p>
     </section>
 
     <div class="games-grid">
@@ -423,10 +517,9 @@
         <div class="game-content">
           <p class="game-description">A strategic puzzle combining Tic Tac Toe and chess. Challenge your mind!</p>
           <div class="badges">
-            <span class="badge badge-alpha">Alpha Test</span>
+            <span class="badge badge-released">Released</span>
           </div>
         </div>
-        <p class="tester-note">⚠️ Currently available for testers only</p>
         <div class="game-actions">
           <a href="https://play.google.com/store/apps/details?id=com.bumpinc.chess_toe" class="store-link" target="_blank" rel="noopener">
             <img src="get_on_google_play_button.webp" alt="Get it on Google Play" class="store-button">
@@ -604,23 +697,16 @@
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
         
         const hue = 250 + Math.sin(time * 0.001 + this.hueOffset) * 30;
-        const alpha = 0.4 + this.z * 0.3;
-        
-        gradient.addColorStop(0, `hsla(${hue}, 70%, 70%, ${alpha})`);
-        gradient.addColorStop(0.5, `hsla(${hue}, 60%, 60%, ${alpha * 0.5})`);
-        gradient.addColorStop(1, `hsla(${hue}, 50%, 50%, 0)`);
+        const alpha = 0.7 + this.z * 0.3;
+
+        gradient.addColorStop(0, `hsla(${hue}, 75%, 90%, ${alpha})`);
+        gradient.addColorStop(0.5, `hsla(${hue}, 65%, 80%, ${alpha * 0.6})`);
+        gradient.addColorStop(1, `hsla(${hue}, 55%, 65%, 0)`);
         
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        
-        ctx.strokeStyle = `hsla(${hue}, 60%, 70%, ${alpha * 0.3})`;
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(this.pastX, this.pastY);
-        ctx.lineTo(this.x, this.y);
-        ctx.stroke();
       }
     }
     
@@ -631,7 +717,7 @@
     function animate() {
       time++;
       
-      ctx.fillStyle = 'rgba(10, 0, 21, 0.15)';
+      ctx.fillStyle = 'rgb(10, 0, 21)';
       ctx.fillRect(0, 0, width, height);
       
       stars.forEach(star => {
