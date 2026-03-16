@@ -103,7 +103,7 @@
 
     .header-title {
       font-size: 1.5rem;
-      font-weight: 200;
+      font-weight: 300;
       background: linear-gradient(135deg, #fff 0%, rgba(200, 180, 255, 0.95) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -394,6 +394,83 @@
       display: block;
     }
 
+    .play-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(145deg,
+        rgba(167, 139, 250, 0.4) 0%,
+        rgba(139, 92, 246, 0.5) 40%,
+        rgba(124, 58, 237, 0.6) 100%);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 0 24px rgba(139, 92, 246, 0.4),
+        0 4px 20px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .play-btn::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(167, 139, 250, 0.6),
+        rgba(124, 58, 237, 0.4),
+        rgba(255, 255, 255, 0.15));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.8;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .play-btn:hover {
+      background: linear-gradient(145deg,
+        rgba(196, 181, 253, 0.5) 0%,
+        rgba(167, 139, 250, 0.6) 40%,
+        rgba(139, 92, 246, 0.7) 100%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.35),
+        0 0 32px rgba(139, 92, 246, 0.6),
+        0 0 48px rgba(124, 58, 237, 0.3),
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      transform: scale(1.1);
+    }
+
+    .play-btn:hover::before {
+      opacity: 1;
+    }
+
+    .play-btn:active {
+      transform: scale(1.05);
+    }
+
+    .play-btn svg {
+      position: relative;
+      width: 26px;
+      height: 26px;
+      margin-left: 4px;
+      fill: #fff;
+      fill: url(#play-btn-icon-gradient);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+    }
+
     .privacy-link {
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.5);
@@ -564,6 +641,36 @@
 
     <div class="games-grid">
 
+      <!-- DO NOT! -->
+      <div class="game-card">
+        <div class="game-header">
+          <img src="do_not.webp" alt="DO NOT!" class="game-icon">
+          <h2 class="game-title">DO NOT!</h2>
+        </div>
+        <div class="game-content">
+          <p class="game-description">Watch windows!<br>The Society has rules — you need to identify those who DO NOT understand this.</p>
+          <div class="badges">
+            <span class="badge badge-released">Released</span>
+          </div>
+        </div>
+        <div class="game-actions">
+          <a href="https://kelidon.github.io/" class="play-btn"
+            target="_blank" rel="noopener" aria-label="Play DO NOT!">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="play-btn-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#fff"/>
+                  <stop offset="100%" style="stop-color:#c4b5fd"/>
+                </linearGradient>
+              </defs>
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            
+          </a>
+          <p class="footer-contact">Desktop is recommended</p>
+        </div>
+      </div>
+
       <!-- Tic-Tac Chess -->
       <div class="game-card">
         <div class="game-header">
@@ -571,7 +678,7 @@
           <h2 class="game-title">Tic-Tac Chess: Puzzle Duel</h2>
         </div>
         <div class="game-content">
-          <p class="game-description">A strategic puzzle combining Tic Tac Toe and chess. Challenge your mind!</p>
+          <p class="game-description">A strategic puzzle combining Tic Tac Toe and chess.<br>Challenge your mind!</p>
           <div class="badges">
             <span class="badge badge-released">Released</span>
           </div>
@@ -593,7 +700,7 @@
           <h2 class="game-title">Steam Skipper</h2>
         </div>
         <div class="game-content">
-          <p class="game-description">Black & white arcade flight. Pure skill. Endless high scores.</p>
+          <p class="game-description">Black & white arcade flight. Pure skill.<br>Endless high scores.</p>
           <div class="badges">
             <span class="badge badge-alpha">Alpha Test</span>
           </div>
@@ -681,7 +788,7 @@
           <h2 class="game-title">Route 5972</h2>
         </div>
         <div class="game-content">
-          <p class="game-description">Race wreckage near Voiden City. Dodge drones, make choices, shape your fate.</p>
+          <p class="game-description">Race wreckage near Voiden City.<br>Dodge drones, make choices, shape your fate.</p>
           <div class="badges">
             <span class="badge badge-development">In Development</span>
           </div>
